@@ -45,3 +45,8 @@ Hashes completos em `src/core/acervo.js`. Modificações: reamostragem de 44 100
 - reveal.js 5.2.1 (MIT)
 - Vite 5.4.11 e vite-plugin-singlefile 2.0.3 (MIT), apenas no build
 - Inter e IBM Plex Mono (SIL Open Font License 1.1; licenças em `src/assets/fonts`)
+
+## Autorização específica de publicação — 28/10/2026
+
+O professor autorizou expressamente a publicação pública das nove gravações do acervo Kumar-laxmi, mantendo a ressalva de procedência e permissão de redistribuição ainda não verificadas. Esta autorização não comprova titularidade de terceiros nem atribui ao professor direitos sobre essas gravações.
+

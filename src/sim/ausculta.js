@@ -3,13 +3,15 @@
  * auscConv: onde e quanto tempo auscultar segundo cada referência (as
  *           recomendações divergem; ABD diz que não são consensuais) e os
  *           pontos de pesquisa de sopros (Bates, Fig. 11-10).
- * sons:     laboratório com ruídos hidroaéreos ESQUEMÁTICOS: padrões, contagem
- *           em janelas diferentes e o efeito do tempo de escuta.
+ * sons:     gravações curtas de acervo de terceiros (procedência não
+ *           verificada) para conhecer o timbre, e ruídos ESQUEMÁTICOS para a
+ *           contagem em janelas diferentes e o efeito do tempo de escuta.
  */
 import { VB, base, quadrantes } from '../core/abdomen.js';
 import { RHA, renderRHA, renderSopro } from '../core/synth.js';
 import { toBuffer, playBuffer, stopCurrent } from '../core/audio.js';
 import { button, captureKeys, setIcon } from '../core/ui.js';
+import { ACERVO, loadAcervo } from '../core/acervo.js';
 
 const CONV = {
   bates: { n: 'Bates', pts: [[175, 405]], txt: 'Diafragma sobre a pele; ouvir em um ponto, como o quadrante inferior direito, costuma ser suficiente, porque os ruídos se propagam por todo o abdome. Frequência estimada de 5 a 34 por minuto. Para afirmar ausência, ouvir por 2 minutos ou mais.' },
@@ -49,10 +51,13 @@ export function sons(node) {
   node.classList.add('sn');
   node.tabIndex = 0;
   node.innerHTML = `
-    <div class="sn-ops" role="radiogroup" aria-label="Padrão"></div>
+    <div class="sn-side">
+      <div class="sn-fonte" role="radiogroup" aria-label="Tipo de som"></div>
+      <div class="sn-ops" role="radiogroup" aria-label="Padrão"></div>
+    </div>
     <div class="sn-main">
       <canvas class="sn-wave" aria-label="Traçado do som"></canvas>
-      <div class="sn-bar"><span class="tag esq">Som sintetizado esquemático, não é gravação clínica</span></div>
+      <div class="sn-bar"><span class="tag esq sn-tag"></span></div>
       <div class="sn-card" aria-live="polite"></div>
     </div>
     <div class="sn-ex">
@@ -62,21 +67,47 @@ export function sons(node) {
       <div class="sn-ans"><label>Eventos contados <input type="number" min="0" max="200" inputmode="numeric"></label></div>
       <div class="sn-tools"></div>
       <div class="sn-res" aria-live="polite"></div>
+    </div>
+    <div class="sn-rec">
+      <h4>Gravações curtas: para que servem</h4>
+      <p>Os trechos têm cerca de 5 segundos. Servem para conhecer o timbre de cada achado.</p>
+      <p>Contar ruídos e afirmar ausência exige escuta longa (2 minutos ou mais para dizer "ausentes"): faça o exercício de contagem em <b>Sons esquemáticos</b>, com janelas de 15 a 60 segundos.</p>
+      <p>Os nomes são rótulos do acervo, sem validação clínica independente. Estes trechos não permitem classificar a frequência dos ruídos, afirmar ausência ou diagnosticar íleo. O volume depende também da captação.</p>
     </div>`;
   const cv = node.querySelector('.sn-wave');
   const card = node.querySelector('.sn-card');
   const res = node.querySelector('.sn-res');
   const inp = node.querySelector('.sn-ans input');
-  let tipo = 'posprandial', win = 30, seed = 7, cur = null, play = null, raf = 0, shown = false;
-  const make = () => {
-    if (SOPROS[tipo]) { const r = renderSopro(tipo, 8); cur = { ...r, events: [] }; }
-    else cur = renderRHA(tipo, win, seed);
-    cur.buf = toBuffer(cur.data, cur.sr);
+  const tag = node.querySelector('.sn-tag');
+  let fonte = 'rec', tipo = 'normal', win = 30, seed = 7, cur = null, play = null, raf = 0, shown = false, token = 0;
+  const isRec = () => fonte === 'rec';
+  const make = async () => {
+    const my = ++token;
     shown = false; res.innerHTML = ''; inp.value = '';
+    node.querySelector('.sn-ex').hidden = isRec() || !!SOPROS[tipo];
+    node.querySelector('.sn-rec').hidden = !isRec();
+    if (isRec()) {
+      const f = ACERVO[tipo];
+      card.innerHTML = `<h4>${f.nome}</h4><p>${f.desc}</p><p class="sn-orig">Rótulo original do acervo: <span class="mono">${f.original}</span>. O traçado é ajustado ao pico de cada trecho; ao ouvir, o volume é o original.</p>`;
+      tag.textContent = 'Gravação de acervo de terceiros · origem não verificada';
+      tag.className = 'tag rec sn-tag';
+      cur = null; paint(0); bPlay.disabled = true;
+      try {
+        const r = await loadAcervo(tipo);
+        if (my !== token) return;
+        cur = { ...r, events: [] };
+      } catch (e) { if (my === token) card.insertAdjacentHTML('beforeend', `<p class="no">${e.message}</p>`); return; }
+    } else {
+      if (SOPROS[tipo]) { const r = renderSopro(tipo, 8); cur = { ...r, events: [] }; }
+      else cur = renderRHA(tipo, win, seed);
+      const p = RHA[tipo] || SOPROS[tipo];
+      card.innerHTML = `<h4>${p.nome}</h4><p>${p.desc}</p>`;
+      tag.textContent = 'Som sintetizado esquemático, não é gravação clínica';
+      tag.className = 'tag esq sn-tag';
+    }
+    cur.buf = toBuffer(cur.data, cur.sr);
+    bPlay.disabled = false;
     paint(0);
-    const p = RHA[tipo] || SOPROS[tipo];
-    card.innerHTML = `<h4>${p.nome}</h4><p>${p.desc}</p>`;
-    node.querySelector('.sn-ex').hidden = !!SOPROS[tipo];
   };
   const paint = (pos) => {
     const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
@@ -84,8 +115,8 @@ export function sons(node) {
     cv.width = w * dpr; cv.height = h * dpr;
     const g = cv.getContext('2d'); g.scale(dpr, dpr);
     g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+    if (!cur) return;
     const d = cur.data, n = d.length, mid = h / 2;
-    // marcas de segundos
     const dur = n / cur.sr;
     g.fillStyle = '#6b7d89'; g.font = '11px Inter, sans-serif';
     for (let s = 0; s <= dur; s += dur > 20 ? 5 : 1) { const x = (s / dur) * w; g.fillRect(x, h - 14, 1, 6); g.fillText(`${s}s`, x + 2, h - 2); }
@@ -93,11 +124,15 @@ export function sons(node) {
       g.fillStyle = 'rgba(201,138,18,.18)';
       cur.events.forEach((e) => g.fillRect((e.t / dur) * w, 6, Math.max(2, (e.len / dur) * w), h - 24));
     }
-    g.strokeStyle = '#0e5462'; g.lineWidth = 1; g.beginPath();
+    // gravações: escala pelo pico do trecho, para que o traçado seja visível mesmo nos trechos baixos
+    let pk = 1;
+    if (isRec()) { pk = 0; for (let i = 0; i < n; i += 4) pk = Math.max(pk, Math.abs(d[i])); pk = Math.max(pk, 0.02); }
+    g.strokeStyle = isRec() ? '#1d7a55' : '#0e5462'; g.lineWidth = 1; g.beginPath();
     const step = n / w;
     for (let x = 0; x < w; x++) {
       let m = 0; const a = Math.floor(x * step), b = Math.min(n, Math.floor((x + 1) * step));
       for (let i = a; i < b; i++) m = Math.max(m, Math.abs(d[i]));
+      m = Math.min(1, m / pk);
       g.moveTo(x + 0.5, mid - m * (mid - 14)); g.lineTo(x + 0.5, mid + m * (mid - 14));
     }
     g.stroke();
@@ -108,16 +143,32 @@ export function sons(node) {
   const stop = () => { cancelAnimationFrame(raf); play?.stop(); play = null; setIcon(bPlay, 'play'); paint(0); };
   bPlay.addEventListener('click', () => {
     if (play) { stop(); return; }
-    play = playBuffer(cur.buf, { loop: !!SOPROS[tipo], onEnd: () => { play = null; setIcon(bPlay, 'play'); cancelAnimationFrame(raf); paint(0); } });
+    if (!cur?.buf) return;
+    play = playBuffer(cur.buf, { loop: !isRec() && !!SOPROS[tipo], onEnd: () => { play = null; setIcon(bPlay, 'play'); cancelAnimationFrame(raf); paint(0); } });
     setIcon(bPlay, 'pause');
     const tick = () => { if (!play) return; const t = (play.ctx.currentTime - play.startedAt) % play.duration; paint(Math.max(0, t / play.duration)); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
   });
   const ops = node.querySelector('.sn-ops');
-  [...Object.entries(RHA), ...Object.entries(SOPROS)].forEach(([k, p]) => {
-    const b = button({ label: p.nome, text: p.nome, cls: 'chip', pressed: k === tipo });
-    b.addEventListener('click', () => { stop(); hist.length = 0; tipo = k; ops.querySelectorAll('.btn').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); make(); });
-    ops.appendChild(b);
+  const buildOps = () => {
+    ops.replaceChildren();
+    const lista = isRec() ? Object.entries(ACERVO).map(([k, f]) => [k, f.nome]) : [...Object.entries(RHA), ...Object.entries(SOPROS)].map(([k, p]) => [k, p.nome]);
+    lista.forEach(([k, nome]) => {
+      const b = button({ label: nome, text: nome, cls: 'chip', pressed: k === tipo });
+      b.addEventListener('click', () => { stop(); hist.length = 0; tipo = k; ops.querySelectorAll('.btn').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); make(); });
+      ops.appendChild(b);
+    });
+  };
+  const fh = node.querySelector('.sn-fonte');
+  [['rec', 'Gravações (acervo)'], ['sint', 'Sons esquemáticos']].forEach(([k, l]) => {
+    const b = button({ label: l, text: l, cls: 'seg', pressed: k === fonte });
+    b.addEventListener('click', () => {
+      if (fonte === k) return;
+      stop(); hist.length = 0; fonte = k; tipo = isRec() ? 'normal' : 'posprandial';
+      fh.querySelectorAll('.btn').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      buildOps(); make();
+    });
+    fh.appendChild(b);
   });
   const wh = node.querySelector('.sn-win');
   [15, 30, 60].forEach((s) => {
@@ -130,6 +181,7 @@ export function sons(node) {
   node.querySelector('.sn-tools').append(bCheck, bNew);
   const hist = [];
   bCheck.addEventListener('click', () => {
+    if (!cur) return;
     const n = cur.events.length, perMin = Math.round((n * 60) / win);
     shown = true; paint(0);
     const dado = inp.value === '' ? null : Number(inp.value);
@@ -139,7 +191,7 @@ export function sons(node) {
   });
   bNew.addEventListener('click', () => { stop(); seed = (seed * 7 + 13) % 997; make(); });
   captureKeys(node, (e) => e.target === inp && e.key.length === 1);
-  make();
+  buildOps(); make();
   const ro = new ResizeObserver(() => paint(0)); ro.observe(cv);
   return { deactivate: stop, pause: stop, activate() { paint(0); } };
 }

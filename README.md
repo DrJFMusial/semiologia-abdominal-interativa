@@ -72,7 +72,7 @@ https://drjfmusial.github.io/semiologia-respiratoria-interativa/
 
 Distribuição web: v1.2.1. Correções de histórico da contagem e linguagem de RV+, aviso autoral e navegação entre aulas. Gravações preservadas com ressalva explícita de procedência não verificada.
 
-## Distribuição pública dos sons
+## Publicação das gravações — v1.2.2
 
-Esta distribuição pública contém somente sons esquemáticos gerados pelo código. As nove gravações de terceiros permanecem na entrega local e não integram os arquivos públicos, enquanto não houver autorização explícita e esclarecimento de procedência.
+As nove gravações do acervo Kumar-laxmi foram autorizadas expressamente pelo professor para publicação com a ressalva de procedência e permissão de redistribuição não verificadas. A autorização do professor não comprova direitos de terceiros. A interface mantém o rótulo original de cada trecho e separa as gravações do exercício com sons esquemáticos.
 

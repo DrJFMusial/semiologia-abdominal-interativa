@@ -215,7 +215,7 @@ body.modo-estudo .rt-head::after { display: none; }
   flex: none; font: 600 12.5px var(--font); color: var(--sound); background: var(--sound-soft);
   padding: 6px 11px; border-radius: 999px; letter-spacing: .02em;
 }
-.au-wave { width: 100%; height: 230px; margin: 18px 0 14px; display: block; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.au-wave { width: 100%; height: 230px; margin: 18px 0 14px; display: block; background: var(--surface, #fff); border: 1px solid var(--line); border-radius: 12px; }
 .au-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .au-caption { margin: 18px 0 8px; font: 600 19px/1.45 var(--font); color: var(--ink); }
 .au-desc { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2); max-width: 900px; }
@@ -230,7 +230,7 @@ body.modo-estudo .rt-head::after { display: none; }
 .qe-play .btn svg { width: 24px; height: 24px; }
 .qe-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .qe-opt {
-  appearance: none; border: 1px solid var(--line-2); background: #fff; border-radius: 12px; padding: 16px 18px; text-align: left;
+  appearance: none; border: 1px solid var(--line-2); background: var(--surface, #fff); border-radius: 12px; padding: 16px 18px; text-align: left;
   font: 560 18px/1.3 var(--font); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s;
 }
 .qe-opt:hover:not(:disabled) { border-color: var(--petrol-2); background: var(--petrol-soft); }
@@ -239,7 +239,7 @@ body.modo-estudo .rt-head::after { display: none; }
 .qe-opt.wrong { border-color: var(--warn); background: var(--warn-soft); color: var(--ink); }
 .qe-fb { margin-top: 14px; min-height: 0; }
 .qe-wave { width: 100%; height: 0; opacity: 0; display: block; transition: opacity .3s; border-radius: 12px; }
-.qe-wave.show { height: 150px; opacity: 1; background: #fff; border: 1px solid var(--line); }
+.qe-wave.show { height: 150px; opacity: 1; background: var(--surface, #fff); border: 1px solid var(--line); }
 .qe-next { margin-top: 14px; }
 
 /* ===================== Modo estudo / telas estreitas ===================== */

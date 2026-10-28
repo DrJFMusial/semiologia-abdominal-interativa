@@ -1,0 +1,59 @@
+:root { --surface: #fff; color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #192b36;
+  --paper: #101d26;
+  --paper-2: #203440;
+  --line: #3c5362;
+  --line-2: #617887;
+  --ink: #edf4f7;
+  --ink-2: #c8d8e1;
+  --ink-3: #acbfcb;
+  --petrol: #83d4df;
+  --petrol-2: #a2e5ec;
+  --petrol-soft: #193e49;
+  --slate: #b0c5d4;
+  --sound: #efb94e;
+  --sound-soft: #423719;
+  --ok: #8ad9b3;
+  --ok-soft: #183e32;
+  --warn: #f3ba81;
+  --warn-soft: #453020;
+  --insp: #77c7f3;
+  --insp-soft: #1c3b50;
+  --exp: #b0bfd4;
+  --exp-soft: #2c394c;
+  --cont: #c2a5f5;
+  --cont-soft: #35294d;
+  --desc: #f2aa87;
+  --desc-soft: #4b2d24;
+  --shadow: 0 8px 24px #0005;
+}
+[data-theme="dark"] .btn.primary,
+[data-theme="dark"] .btn.seg[aria-pressed="true"],
+[data-theme="dark"] .sd-tab tr.on .sd-name { color: #10212b; }
+[data-theme="dark"] .tag.esq { color: #efc66f; }
+.theme-toggle { font-size: 23px; }
+[data-theme="dark"] .cr-sbg,
+[data-theme="dark"] .cr-bands .b-pau,
+[data-theme="dark"] .sc-win { fill: var(--surface); }
+[data-theme="dark"] .sf-ref text { fill: #0e5462; }
+@media (max-width: 420px) {
+  body.modo-estudo .ab-brand { display: none; }
+  body.modo-estudo .appbar { justify-content: center; padding-inline: 4px; }
+}
+
+:root[data-theme="dark"] { --art: #fa8990; --art-soft: #48272c; --ven: #9ab9f2; --ven-soft: #243552; }
+[data-theme="dark"] .lg-card.sel, [data-theme="dark"] .cd-st.open .cd-n,
+[data-theme="dark"] .og-card ol li::before, [data-theme="dark"] .pv-st.cur span,
+[data-theme="dark"] .caso-path span, [data-theme="dark"] .passos li::before,
+[data-theme="dark"] .hs-item span { color: #10212b; }
+[data-theme="dark"] .btn.seg[aria-pressed="true"], [data-theme="dark"] .lg-card.sel { background: #83d4df; border-color: #83d4df; }
+[data-theme="dark"] .pc-pt .halo, [data-theme="dark"] .at-pt circle,
+[data-theme="dark"] .ac-pt circle, [data-theme="dark"] .hp-pt circle,
+[data-theme="dark"] .as-pt circle, [data-theme="dark"] .mu-curve rect { fill: var(--surface); }
+[data-theme="dark"] .tag.rec { color: var(--ok); background: var(--ok-soft); }
+/* Text on the pale anatomical diagram uses dark local colors. */
+[data-theme="dark"] .as-fr .as-zt { fill: #5d368b; }
+[data-theme="dark"] .as-fr .as-zt.d { fill: #943d1e; }
+[data-theme="dark"] .as-fr .as-skoda { stroke: #2f5aa3; }

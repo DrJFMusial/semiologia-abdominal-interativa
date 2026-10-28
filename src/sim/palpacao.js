@@ -80,9 +80,9 @@ export function tonus(node) {
     const g = cv.getContext('2d'); g.scale(dpr, dpr);
     g.clearRect(0, 0, w, h);
     g.fillStyle = 'rgba(195,50,60,.08)'; g.fillRect(0, 0, w, h * 0.35);
-    g.fillStyle = '#6b7d89'; g.font = '11px Inter, sans-serif';
+    g.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink-3').trim(); g.font = '11px Inter, sans-serif';
     g.fillText('rígida', 6, 14); g.fillText('flácida', 6, h - 6);
-    g.strokeStyle = '#0e5462'; g.lineWidth = 2.2; g.beginPath();
+    g.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--petrol').trim(); g.lineWidth = 2.2; g.beginPath();
     hist.forEach((v, i) => { const x = (i / 239) * w, y = h - v * (h - 10) - 4; i ? g.lineTo(x, y) : g.moveTo(x, y); });
     g.stroke();
     node.querySelector('.tn-v').textContent = cur > 0.6 ? 'alta' : cur > 0.35 ? 'moderada' : 'baixa';

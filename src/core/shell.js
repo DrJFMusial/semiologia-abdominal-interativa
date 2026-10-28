@@ -37,6 +37,25 @@ export function buildShell(deck, { modo }) {
   right.append(bMenu, bHome, bModo, bPause, bMotion, vol);
   if (modo !== 'estudo') right.append(bNotes);
   right.append(bFull);
+  const bTheme = document.createElement('button');
+  bTheme.type = 'button';
+  bTheme.className = 'btn theme-toggle';
+  const paintTheme = () => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    bTheme.textContent = dark ? '☀' : '☾';
+    bTheme.setAttribute('aria-label', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
+    bTheme.setAttribute('title', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
+    bTheme.setAttribute('aria-pressed', String(dark));
+  };
+  paintTheme();
+  bTheme.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    window.dispatchEvent(new Event('e2m08-theme-change'));
+    try { localStorage.setItem('e2m08-theme', theme); } catch { /* preferência opcional */ }
+    paintTheme();
+  });
+  right.append(bTheme);
   document.body.appendChild(bar);
 
   // ---- volume ----

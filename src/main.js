@@ -1,3 +1,4 @@
+import './styles/theme.css';
 import './styles/authorship.css';
 import { buildAuthorship } from './core/authorship.js';
 /**
@@ -33,6 +34,8 @@ import { tonus, massaParede } from './sim/palpacao.js';
 import { orgao, murphy, apendice } from './sim/orgaos.js';
 import { paciente } from './sim/paciente.js';
 import { registro } from './components/registro.js';
+
+try { const saved = localStorage.getItem('e2m08-theme'); document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch { document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
 
 // ---- conteúdo: um arquivo HTML por slide, em ordem alfabética ----------------
 const files = import.meta.glob('./slides/*.html', { query: '?raw', import: 'default', eager: true });

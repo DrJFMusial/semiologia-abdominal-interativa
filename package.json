@@ -1,8 +1,8 @@
 {
   "name": "semiologia-abdominal-interativa",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
-  "description": "Semiologia Abdominal Interativa | E2M08 2026/2 | Prof. João Frederico Musial",
+  "description": "Semiologia Abdominal Interativa | E2M08 2026/2 | Prof. JoÃ£o Frederico Musial",
   "type": "module",
   "scripts": {
     "dev": "vite",

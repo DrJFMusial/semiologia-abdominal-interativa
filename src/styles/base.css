@@ -14,7 +14,7 @@ body {
 
 /* ---------- botões ---------- */
 .btn {
-  appearance: none; border: 1px solid var(--line-2); background: #fff; color: var(--ink);
+  appearance: none; border: 1px solid var(--line-2); background: var(--surface, #fff); color: var(--ink);
   font: 550 15px/1 var(--font); height: 40px; min-width: 40px; padding: 0 12px;
   border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   cursor: pointer; transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
@@ -44,7 +44,7 @@ body {
   position: fixed; z-index: 40; left: 14px; bottom: 12px;
   display: flex; align-items: center; gap: 14px;
   padding: 6px 8px 6px 14px; border-radius: 14px;
-  background: color-mix(in srgb, #fff 86%, transparent);
+  background: color-mix(in srgb, var(--surface, #fff) 86%, transparent);
   border: 1px solid var(--line); box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
   opacity: .42; transition: opacity .25s;
@@ -70,7 +70,7 @@ body.modo-apresentacao.idle .reveal { cursor: none; }
   background: rgba(16, 33, 43, .22); padding: 0 0 70px 14px;
 }
 .sm-inner {
-  background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 20px 50px rgba(16, 33, 43, .18);
+  background: var(--surface, #fff); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 20px 50px rgba(16, 33, 43, .18);
   padding: 18px 20px; max-height: calc(100vh - 100px); overflow: auto;
   display: grid; grid-template-columns: repeat(2, minmax(200px, 260px)); gap: 6px 24px;
 }
@@ -115,7 +115,7 @@ body.modo-estudo .reveal .slides {
 body.modo-estudo .reveal .slides > section {
   position: static !important; display: block !important; width: auto !important; height: auto !important;
   transform: none !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
-  background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 32px 36px 36px !important;
+  background: var(--surface, #fff); border: 1px solid var(--line); border-radius: 18px; padding: 32px 36px 36px !important;
   scroll-margin-top: 72px;
 }
 body.modo-estudo .appbar {

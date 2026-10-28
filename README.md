@@ -76,3 +76,6 @@ Distribuição web: v1.2.1. Correções de histórico da contagem e linguagem de
 
 As nove gravações do acervo Kumar-laxmi foram autorizadas expressamente pelo professor para publicação com a ressalva de procedência e permissão de redistribuição não verificadas. A autorização do professor não comprova direitos de terceiros. A interface mantém o rótulo original de cada trecho e separa as gravações do exercício com sons esquemáticos.
 
+## Tema claro/escuro — v1.2.3
+
+Botão de lua/sol na barra da aula, preferência salva no navegador e adoção do tema do sistema quando não há escolha salva. Disponível em apresentação, estudo e arquivo offline.

@@ -114,11 +114,12 @@ export function sons(node) {
     if (!w) return;
     cv.width = w * dpr; cv.height = h * dpr;
     const g = cv.getContext('2d'); g.scale(dpr, dpr);
-    g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+    const colors = getComputedStyle(document.documentElement);
+    g.fillStyle = colors.getPropertyValue('--surface').trim() || '#fff'; g.fillRect(0, 0, w, h);
     if (!cur) return;
     const d = cur.data, n = d.length, mid = h / 2;
     const dur = n / cur.sr;
-    g.fillStyle = '#6b7d89'; g.font = '11px Inter, sans-serif';
+    g.fillStyle = colors.getPropertyValue('--ink-3').trim(); g.font = '11px Inter, sans-serif';
     for (let s = 0; s <= dur; s += dur > 20 ? 5 : 1) { const x = (s / dur) * w; g.fillRect(x, h - 14, 1, 6); g.fillText(`${s}s`, x + 2, h - 2); }
     if (shown) {
       g.fillStyle = 'rgba(201,138,18,.18)';
@@ -127,7 +128,7 @@ export function sons(node) {
     // gravações: escala pelo pico do trecho, para que o traçado seja visível mesmo nos trechos baixos
     let pk = 1;
     if (isRec()) { pk = 0; for (let i = 0; i < n; i += 4) pk = Math.max(pk, Math.abs(d[i])); pk = Math.max(pk, 0.02); }
-    g.strokeStyle = isRec() ? '#1d7a55' : '#0e5462'; g.lineWidth = 1; g.beginPath();
+    g.strokeStyle = colors.getPropertyValue(isRec() ? '--ok' : '--petrol').trim(); g.lineWidth = 1; g.beginPath();
     const step = n / w;
     for (let x = 0; x < w; x++) {
       let m = 0; const a = Math.floor(x * step), b = Math.min(n, Math.floor((x + 1) * step));
@@ -192,9 +193,9 @@ export function sons(node) {
   bNew.addEventListener('click', () => { stop(); seed = (seed * 7 + 13) % 997; make(); });
   captureKeys(node, (e) => e.target === inp && e.key.length === 1);
   buildOps(); make();
+  window.addEventListener('e2m08-theme-change', () => paint(0));
   const ro = new ResizeObserver(() => paint(0)); ro.observe(cv);
   return { deactivate: stop, pause: stop, activate() { paint(0); } };
 }
 
 export { stopCurrent };
-

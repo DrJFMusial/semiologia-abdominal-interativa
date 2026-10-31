@@ -631,11 +631,7 @@ body.modo-estudo .card.rv-item:not(.open)::after { display: none; }
 /* ---------- modo estudo e telas estreitas ---------- */
 body.modo-estudo .ph img { max-height: 520px; }
 @media (max-width: 1100px) {
-  body.modo-estudo .lg, body.modo-estudo .at, body.modo-estudo .dr, body.modo-estudo .fm, body.modo-estudo .sf-main, body.modo-estudo .hn,
-  body.modo-estudo .ac, body.modo-estudo .sn, body.modo-estudo .pa, body.modo-estudo .hp-wrap, body.modo-estudo .as, body.modo-estudo .as-stage,
-  body.modo-estudo .tn, body.modo-estudo .tn-main, body.modo-estudo .og, body.modo-estudo .og-fig, body.modo-estudo .mu, body.modo-estudo .ap,
-  body.modo-estudo .ap.has-img .ap-fig, body.modo-estudo .pv-body, body.modo-estudo .two, body.modo-estudo .two.img-l, body.modo-estudo .two.img-r,
-  body.modo-estudo .cards.c3, body.modo-estudo .cards.c4, body.modo-estudo .escada, body.modo-estudo .ref-grid, body.modo-estudo .registro { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  body.modo-estudo .lg, body.modo-estudo .at, body.modo-estudo .dr, body.modo-estudo .fm, body.modo-estudo .sf-main, body.modo-estudo .hn, body.modo-estudo .ac, body.modo-estudo .sn, body.modo-estudo .pa, body.modo-estudo .hp-wrap, body.modo-estudo .as, body.modo-estudo .as-stage, body.modo-estudo .tn, body.modo-estudo .tn-main, body.modo-estudo .og, body.modo-estudo .og-fig, body.modo-estudo .mu, body.modo-estudo .ap, body.modo-estudo .ap.has-img .ap-fig, body.modo-estudo .pv-body, body.modo-estudo .two, body.modo-estudo .two.img-l, body.modo-estudo .two.img-r, body.modo-estudo .cards.c3, body.modo-estudo .cards.c4, body.modo-estudo .escada, body.modo-estudo .ref-grid, body.modo-estudo .registro { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   body.modo-estudo .lg-ladder, body.modo-estudo .lg-fb, body.modo-estudo .lg-tools, body.modo-estudo .lg-pool { grid-column: 1; grid-row: auto; }
   body.modo-estudo .hn-svg, body.modo-estudo .hn-bar, body.modo-estudo .hn-card, body.modo-estudo .as-panel, body.modo-estudo .ap-fig, body.modo-estudo .ap-nota { grid-column: 1; grid-row: auto; }
   body.modo-estudo .cd-track { grid-template-columns: 1fr; margin-top: 10px !important; }
@@ -692,8 +688,7 @@ body.modo-estudo .cp-abd { height: auto; width: 100%; max-height: 520px; }
 .two.img-r.w760 { grid-template-columns: minmax(0, 1fr) 760px; }
 @media (max-width: 1100px) {
   body.modo-estudo .two.img-l.w420, body.modo-estudo .two.img-l.w520, body.modo-estudo .two.img-r.w760 { grid-template-columns: minmax(0, 1fr); }
-  body.modo-estudo .as-cond, body.modo-estudo .as-vol, body.modo-estudo .as-dec, body.modo-estudo .sf-tabs, body.modo-estudo .og-tabs, body.modo-estudo .ap-tabs,
-  body.modo-estudo .ac-tabs, body.modo-estudo .hp-tabs, body.modo-estudo .mu-fr, body.modo-estudo .at-div, body.modo-estudo .at-conv, body.modo-estudo .sn-win { flex-wrap: wrap; row-gap: 4px; }
+  body.modo-estudo .as-cond, body.modo-estudo .as-vol, body.modo-estudo .as-dec, body.modo-estudo .sf-tabs, body.modo-estudo .og-tabs, body.modo-estudo .ap-tabs, body.modo-estudo .ac-tabs, body.modo-estudo .hp-tabs, body.modo-estudo .mu-fr, body.modo-estudo .at-div, body.modo-estudo .at-conv, body.modo-estudo .sn-win { flex-wrap: wrap; row-gap: 4px; }
   body.modo-estudo .as-row { flex-wrap: wrap; }
   body.modo-estudo .btn.seg { border-radius: 8px; margin-left: 0; margin-right: 4px; }
 }

@@ -1,3 +1,5 @@
+import { ENCONTRO } from './config-aula.js';
+import './styles/correcoes-conteudo.css';
 import './styles/theme.css';
 import './styles/authorship.css';
 import { buildAuthorship } from './core/authorship.js';
@@ -47,6 +49,8 @@ window.__img = imgUrl;
 const html = Object.keys(files).sort().map((k) => files[k]).join('\n')
   .replace(/@img\/([\w.-]+)/g, (m, n) => imgUrl[n] || m);
 document.querySelector('.reveal .slides').innerHTML = html;
+const encontro = document.querySelector('.capa-encontro');
+if (encontro && ENCONTRO != null) encontro.textContent += ' · ' + ENCONTRO + 'º encontro';
 
 // ---- modo ------------------------------------------------------------------------
 const params = new URLSearchParams(location.search);
@@ -77,6 +81,7 @@ if (modo === 'estudo') {
   deck = new Reveal(document.querySelector('.reveal'), {
     width: 1600,
     height: 900,
+    scrollActivationWidth: 0,
     margin: 0.03,
     minScale: 0.2,
     maxScale: 2.5,

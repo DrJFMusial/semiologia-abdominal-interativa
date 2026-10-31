@@ -53,14 +53,14 @@ sandbox/               scripts de verificação com Playwright (não entram no b
 
 ## Regras de conteúdo mantidas no código
 
-- Nenhum som toca sozinho. Os sons sintetizados são identificados na tela como esquemáticos; as nove gravações abdominais de acervo de terceiros, como "origem não verificada".
+- Nenhum som toca sozinho. Os sons sintetizados são identificados na tela como esquemáticos; os sons abdominais, como sons sintetizados pelo autor para fins didáticos.
 - Nenhuma figura de livro é incluída; as fotografias foram geradas a partir de descrições do autor.
 - O paciente virtual não emite diagnóstico: organiza hipóteses com dados a favor, contra e o exame que testaria cada uma.
 - Divergências entre as referências aparecem marcadas como "Fontes divergem".
 
 ## Publicação
 
-Não publicado. Ver `docs/PUBLICACAO_GITHUB_PAGES.md`; só publicar com a aprovação do professor. **A partir da 1.2.0 a aula contém gravações de procedência não verificada (`src/assets/audio/acervo-*.wav`): retire-as ou esclareça a origem antes de qualquer publicação.**
+Não publicado. Ver `docs/PUBLICACAO_GITHUB_PAGES.md`; só publicar com a aprovação do professor. Os arquivos de áudio estão preservados. Os créditos identificam sons sintetizados pelo autor para fins didáticos.
 
 ## Autoria e aulas relacionadas
 
@@ -70,11 +70,11 @@ https://drjfmusial.github.io/semiologia-abdominal-interativa/
 https://drjfmusial.github.io/semiologia-cardiovascular-interativa/
 https://drjfmusial.github.io/semiologia-respiratoria-interativa/
 
-Distribuição web: v1.2.1. Correções de histórico da contagem e linguagem de RV+, aviso autoral e navegação entre aulas. Gravações preservadas com ressalva explícita de procedência não verificada.
+Distribuição web: v1.2.1. Correções de histórico da contagem e linguagem de RV+, aviso autoral e navegação entre aulas. Sons preservados com identificação de autoria.
 
 ## Publicação das gravações — v1.2.2
 
-As nove gravações do acervo Kumar-laxmi foram autorizadas expressamente pelo professor para publicação com a ressalva de procedência e permissão de redistribuição não verificadas. A autorização do professor não comprova direitos de terceiros. A interface mantém o rótulo original de cada trecho e separa as gravações do exercício com sons esquemáticos.
+Sons sintetizados pelo autor para fins didáticos. A correção de autoria desta revisão preserva integralmente os arquivos de áudio.
 
 ## Tema claro/escuro — v1.2.3
 

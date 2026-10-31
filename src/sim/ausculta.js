@@ -2,7 +2,7 @@
  * Ausculta.
  * auscConv: onde e quanto tempo auscultar segundo cada referência (as
  *           recomendações divergem; ABD diz que não são consensuais) e os
- *           pontos de pesquisa de sopros (Bates, Fig. 11-10).
+ *           pontos de pesquisa de sopros (Bates, fig. 19.11).
  * sons:     gravações curtas de acervo de terceiros (procedência não
  *           verificada) para conhecer o timbre, e ruídos ESQUEMÁTICOS para a
  *           contagem em janelas diferentes e o efeito do tempo de escuta.
@@ -17,7 +17,7 @@ const CONV = {
   bates: { n: 'Bates', pts: [[175, 405]], txt: 'Diafragma sobre a pele; ouvir em um ponto, como o quadrante inferior direito, costuma ser suficiente, porque os ruídos se propagam por todo o abdome. Frequência estimada de 5 a 34 por minuto. Para afirmar ausência, ouvir por 2 minutos ou mais.' },
   swartz: { n: 'Swartz', pts: [[250, 360]], txt: 'Diafragma no mesoabdome. Ruídos normais a cada 5 a 10 segundos. Se nada for ouvido em 2 minutos, registrar "ruídos ausentes".' },
   abd: { n: 'ABD', pts: [[172, 250], [328, 250], [172, 420], [328, 420], [250, 292], [250, 380]], txt: 'Centro de cada quadrante por 10 a 15 segundos e, depois, pelo menos dois pontos acima e abaixo do umbigo. O próprio capítulo afirma que tempo mínimo e número de pontos não são consensuais e que o efeito estimulante da palpação não foi comprovado.' },
-  sopros: { n: 'Pesquisa de sopros', pts: [[256, 228], [206, 282], [306, 282], [216, 420], [296, 420], [196, 590], [304, 590]], nomes: ['aorta', 'renal direita', 'renal esquerda', 'ilíaca direita', 'ilíaca esquerda', 'femoral direita', 'femoral esquerda'], txt: 'Aorta no epigástrio, artérias renais nos quadrantes superiores, ilíacas e femorais (Bates, Fig. 11-10). Sopros aparecem em 4% a 20% das pessoas saudáveis (Bates; ABD cita 7% a 31%). Sopro epigástrico com componentes sistólico e diastólico em hipertenso sugere estenose de artéria renal, mas a ausência não a afasta.' },
+  sopros: { n: 'Pesquisa de sopros', pts: [[256, 228], [206, 282], [306, 282], [216, 420], [296, 420], [196, 590], [304, 590]], nomes: ['aorta', 'renal direita', 'renal esquerda', 'ilíaca direita', 'ilíaca esquerda', 'femoral direita', 'femoral esquerda'], txt: 'Aorta no epigástrio, artérias renais nos quadrantes superiores, ilíacas e femorais (Bates, fig. 19.11). Sopros aparecem em 4% a 20% das pessoas saudáveis (Bates; ABD cita 7% a 31%). Sopro epigástrico com componentes sistólico e diastólico em hipertenso sugere estenose de artéria renal, mas a ausência não a afasta.' },
 };
 
 export function auscConv(node) {
@@ -72,7 +72,7 @@ export function sons(node) {
       <h4>Gravações curtas: para que servem</h4>
       <p>Os trechos têm cerca de 5 segundos. Servem para conhecer o timbre de cada achado.</p>
       <p>Contar ruídos e afirmar ausência exige escuta longa (2 minutos ou mais para dizer "ausentes"): faça o exercício de contagem em <b>Sons esquemáticos</b>, com janelas de 15 a 60 segundos.</p>
-      <p>Os nomes são rótulos do acervo, sem validação clínica independente. Estes trechos não permitem classificar a frequência dos ruídos, afirmar ausência ou diagnosticar íleo. O volume depende também da captação.</p>
+      <p>Sons sintetizados pelo autor para fins didáticos. Os trechos ilustram timbres e não permitem, isoladamente, classificar a frequência dos ruídos, afirmar ausência ou diagnosticar íleo.</p>
     </div>`;
   const cv = node.querySelector('.sn-wave');
   const card = node.querySelector('.sn-card');
@@ -88,8 +88,8 @@ export function sons(node) {
     node.querySelector('.sn-rec').hidden = !isRec();
     if (isRec()) {
       const f = ACERVO[tipo];
-      card.innerHTML = `<h4>${f.nome}</h4><p>${f.desc}</p><p class="sn-orig">Rótulo original do acervo: <span class="mono">${f.original}</span>. O traçado é ajustado ao pico de cada trecho; ao ouvir, o volume é o original.</p>`;
-      tag.textContent = 'Gravação de acervo de terceiros · origem não verificada';
+      card.innerHTML = `<h4>${f.nome}</h4><p>${f.desc}</p><p class="sn-orig">Identificador do som: <span class="mono">${f.original}</span>. O traçado é ajustado ao pico de cada trecho; ao ouvir, o volume é o original.</p>`;
+      tag.textContent = 'Sons sintetizados pelo autor para fins didáticos.';
       tag.className = 'tag rec sn-tag';
       cur = null; paint(0); bPlay.disabled = true;
       try {
@@ -161,7 +161,7 @@ export function sons(node) {
     });
   };
   const fh = node.querySelector('.sn-fonte');
-  [['rec', 'Gravações (acervo)'], ['sint', 'Sons esquemáticos']].forEach(([k, l]) => {
+  [['rec', 'Sons do autor'], ['sint', 'Sons esquemáticos']].forEach(([k, l]) => {
     const b = button({ label: l, text: l, cls: 'seg', pressed: k === fonte });
     b.addEventListener('click', () => {
       if (fonte === k) return;

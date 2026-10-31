@@ -1,7 +1,7 @@
 /**
  * Laboratório da dor: visceral, parietal e referida, e a mudança no tempo.
  * A dor visceral fica mal localizada na linha média, no nível embriológico
- * do órgão (epigástrio, região periumbilical, hipogástrio; Bates, Fig. 11-7);
+ * do órgão (epigástrio, região periumbilical, hipogástrio; Bates, fig. 19.8);
  * a parietal é localizada e piora com movimento; a referida aparece longe.
  * Modelo didático: as áreas são as clássicas, a variação individual existe.
  */
@@ -27,7 +27,7 @@ const ORG = {
   delgado: { nome: 'Intestino delgado', z: () => ['visUmb'], tipo: 'Visceral (intestino médio)', loc: 'Periumbilical, difusa', car: 'Cólica, em ondas (distensão e contração da alça)', irr: 'Não irradia', piora: 'Na obstrução vem com vômitos e distensão' },
   apendice: { nome: 'Apêndice', tempo: true, z: (t) => (t < 8 ? ['visUmb'] : t < 13 ? ['visUmb', 'parFID'] : ['parFID']), fases: [[0, 'Início: distensão do apêndice; dor visceral periumbilical, mal localizada, com náusea'], [8, 'Transição: a inflamação começa a atingir o peritônio parietal'], [13, 'Dor parietal localizada na fossa ilíaca direita (ponto de McBurney), piora com tosse e movimento']], tipo: 'Visceral que passa a parietal (migração)', loc: 'Periumbilical → fossa ilíaca direita', car: 'Contínua e progressiva', irr: 'Apêndice retrocecal: flanco ou lombar direita; pélvico: suprapúbica', piora: 'Tosse, andar, solavanco; idosos têm a migração com menos frequência (Bates)' },
   colon: { nome: 'Cólon (sigmoide)', z: () => ['visHipo', 'parQIE'], tipo: 'Visceral (intestino posterior); parietal se inflamar', loc: 'Hipogástrio; quadrante inferior esquerdo na diverticulite', car: 'Cólica ou contínua', irr: 'Pouco', piora: 'Alivia ou piora com a evacuação' },
-  rim: { nome: 'Rim e ureter', z: () => ['lombD', 'flancoD', 'inguD'], tipo: 'Visceral (cápsula renal e ureter), com irradiação', loc: 'Ângulo costovertebral e flanco', car: 'Cólica intensa (ureter) ou dor surda contínua (rim)', irr: 'Do flanco para a fossa ilíaca e a região inguinal, testículo ou grande lábio (Bates, Fig. 11-8)', piora: 'O paciente não acha posição (cólica), ao contrário da peritonite, em que fica imóvel' },
+  rim: { nome: 'Rim e ureter', z: () => ['lombD', 'flancoD', 'inguD'], tipo: 'Visceral (cápsula renal e ureter), com irradiação', loc: 'Ângulo costovertebral e flanco', car: 'Cólica intensa (ureter) ou dor surda contínua (rim)', irr: 'Do flanco para a fossa ilíaca e a região inguinal, testículo ou grande lábio (Bates, fig. 19.9)', piora: 'O paciente não acha posição (cólica), ao contrário da peritonite, em que fica imóvel' },
   diafragma: { nome: 'Irritação do diafragma', z: () => ['refOmbroD', 'refOmbroE'], tipo: 'Referida', loc: 'Ombro, longe da causa', car: 'Contínua', irr: 'Ombro do mesmo lado (inervação frênica, C3 a C5)', piora: 'Respiração profunda. Ex.: sangue, pus ou ar sob o diafragma' },
 };
 

@@ -6,7 +6,7 @@ Texto, roteiro, simuladores e esquemas vetoriais: Prof. João Frederico Musial, 
 
 Referências consultadas (nenhum trecho ou figura reproduzido):
 
-1. Bickley LS, Szilagyi PG. *Bates' guide to physical examination and history taking*. 12. ed. Wolters Kluwer, 2017. Cap. 11, The Abdomen.
+1. Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. *Bates: propedêutica médica*. 13ª ed. Rio de Janeiro: Guanabara Koogan; 2022. Capítulo 19, Abdome.
 2. Swartz MH. *Textbook of physical diagnosis: history and examination*. 8. ed. Elsevier, 2021. Cap. 17, The Abdomen. ISBN 978-0-323-67292-4 (metadados do arquivo e página da editora).
 3. Troncon LEA, Oliveira RB, Teixeira AC, Souza FF, Meneghelli UG, Martinelli ALC. Exame do abdome. In: Baddini-Martinez J, Dantas M, Voltarelli JC (org.). *Semiologia geral e especializada*. 2. ed. [S. l.]: Editora dos Autores, 2024. Cap. 12, p. 199-226 (citado como ABD). Dados editoriais conferidos em bibliografia institucional da USP, não em ficha catalográfica.
 
@@ -16,7 +16,7 @@ Vinte e quatro ilustrações fotorrealistas (pasta `src/assets/images`), geradas
 
 Onze vêm da versão 1.0.0 (AB01, AB02, AB03, AB05, AB06, AB08, AB09a, AB09b, AB13a, AB19, REF_C). Treze foram produzidas na rodada de complementos (Codex) e integradas na 1.1.0: AB07, AB10, AB11, AB12, AB13b, AB14a, AB14b, AB15, AB16a, AB16b, AB18, AB22, AB23. A seleção foi visual; a aprovação clínica final de cada figura cabe ao autor.
 
-Figuras de escopo limitado, com a ressalva na própria legenda: AB08 (só posição do examinador; as mãos não estão em garra), AB11 (posicionamento, paciente vestido), AB14a e AB14b (só posições), AB15 (montagem do piparote, sem a onda), AB16b (sem a reação facial), AB18 (detalhe do apoio dos membros), AB22 (posição das mãos, sem medida), AB23 (início abaixo do rebordo, sem altura universal nem borda de fígado aumentado).
+Registro interno: AB08 (garra) e AB10 (palpação do baço em decúbito dorsal) retiradas dos slides por divergência entre imagem e técnica. Arquivos originais preservados. AB11, AB14a, AB14b, AB15, AB16b, AB18, AB22 e AB23 preservadas; as legendas descrevem somente o conteúdo visível.
 
 Antes de publicar, confirmar nos termos das ferramentas de geração usadas que as imagens podem ser redistribuídas em material educacional público.
 
@@ -24,9 +24,9 @@ Antes de publicar, confirmar nos termos das ferramentas de geração usadas que 
 
 Sons esquemáticos (ruídos hidroaéreos, sopros, percussão) sintetizados no navegador por código desta aplicação e identificados na tela como "som sintetizado esquemático".
 
-Gravações abdominais (versão 1.2.0): nove trechos do acervo do projeto *Auscultation Simulator Application* (Kumar-laxmi, https://github.com/Kumar-laxmi/Auscultation-Simulator-Application), a partir da cópia local organizada pelo Codex (pasta SIMULADOR_AUSCULTA_WINDOWS). O projeto licencia seu código sob GPL-3.0, mas **não informa a origem das gravações**; a procedência e os direitos sobre os áudios não foram verificados. Uso decidido pelo professor para a aula local. Na tela, cada trecho aparece como "gravação de acervo de terceiros, origem não verificada", com o rótulo original.
+Sons sintetizados pelo autor para fins didáticos, conforme identificação de autoria fornecida pelo professor nesta revisão. Os nove arquivos abaixo e seus hashes foram preservados.
 
-| Arquivo na aula | Rótulo original | SHA-256 do original |
+| Arquivo na aula | Identificador do som | SHA-256 do original |
 |---|---|---|
 | acervo-normal.wav | normal_bowel | 0948b6bd…d5f032 |
 | acervo-hiperativo.wav | hyperactive_sounds | e7b99831…030a37 |
@@ -46,7 +46,6 @@ Hashes completos em `src/core/acervo.js`. Modificações: reamostragem de 44 100
 - Vite 5.4.11 e vite-plugin-singlefile 2.0.3 (MIT), apenas no build
 - Inter e IBM Plex Mono (SIL Open Font License 1.1; licenças em `src/assets/fonts`)
 
-## Autorização específica de publicação — 28/10/2026
+## Identificação de autoria nesta revisão
 
-O professor autorizou expressamente a publicação pública das nove gravações do acervo Kumar-laxmi, mantendo a ressalva de procedência e permissão de redistribuição ainda não verificadas. Esta autorização não comprova titularidade de terceiros nem atribui ao professor direitos sobre essas gravações.
-
+Sons sintetizados pelo autor para fins didáticos. Os arquivos de áudio permanecem intactos. A publicação desta rodada depende de aprovação do professor.

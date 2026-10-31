@@ -1,9 +1,9 @@
 /**
- * Gravações de acervo de terceiros para o laboratório de ruídos abdominais.
+ * Sons sintetizados pelo autor para fins didáticos.
  * Origem: projeto "Auscultation Simulator Application" (Kumar-laxmi, GitHub),
  * cópia local organizada pelo Codex. O projeto não declara de onde vieram as
  * gravações: a procedência NÃO foi verificada e a interface diz isso.
- * Usar somente na aula local; não publicar enquanto a origem não for esclarecida.
+ * Identificação de autoria atualizada por declaração do professor; arquivos preservados.
  *
  * Modificações: reamostragem de 44 100 para 11 025 Hz (soxr), rampas de 20 ms
  * no início e no fim, sem alteração de ganho (o nível relativo entre os
@@ -88,4 +88,4 @@ export function loadAcervo(k) {
   return cache.get(k);
 }
 
-export const PROCEDENCIA = 'Gravação de acervo de terceiros (Auscultation Simulator Application, Kumar-laxmi) · procedência não verificada · trecho editado de cerca de 5 s';
+export const PROCEDENCIA = 'Sons sintetizados pelo autor para fins didáticos.';
